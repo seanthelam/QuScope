@@ -1,10 +1,42 @@
-qiskit>=0.34.0
-numpy>=1.20.0
-matplotlib>=3.4.0
-pillow>=8.2.0
-jupyter>=1.0.0
-scipy>=1.7.0
-pandas>=1.3.0
-torch>=1.9.0
-torchvision>=0.10.0
-piqture>=0.1.0
+# Core Quantum Computing
+qiskit>=1.0.0                # Core quantum computing framework
+qiskit-ibm-provider>=0.7.0   # IBM Quantum provider for accessing real quantum hardware
+qiskit-aer>=0.12.0           # Enhanced simulators for Qiskit
+qiskit-experiments>=0.5.0    # Tools for running experiments on quantum systems
+
+# Scientific Computing
+numpy>=1.24.0                # Numerical computing
+scipy>=1.10.0                # Scientific computing
+sympy>=1.12.0                # Symbolic mathematics (for quantum circuit analysis)
+
+# Data Analysis
+pandas>=2.0.0                # Data manipulation and analysis
+scikit-learn>=1.2.0          # Machine learning tools
+scikit-image>=0.20.0         # Image processing algorithms
+
+# Visualization
+matplotlib>=3.7.0            # Plotting and visualization
+seaborn>=0.12.0              # Statistical data visualization
+plotly>=5.14.0               # Interactive plots (optional)
+ipywidgets>=8.0.0            # Interactive widgets for notebooks
+
+# Image Processing
+pillow>=10.0.0               # Image loading and manipulation
+opencv-python>=4.7.0         # Advanced image processing (optional)
+
+# Quantum Image Processing
+piqture>=0.1.0               # Quantum image representation and processing
+
+# Deep Learning (for hybrid quantum-classical models)
+torch>=2.0.0                 # PyTorch for deep learning
+torchvision>=0.15.0          # Computer vision utilities for PyTorch
+
+# Jupyter Environment
+jupyter>=1.0.0               # Jupyter notebook
+jupyterlab>=4.0.0            # Enhanced Jupyter environment
+nbconvert>=7.3.0             # Convert notebooks to other formats (for paper figures)
+
+# Documentation
+sphinx>=6.1.0                # Documentation generator (optional)
+sphinx-rtd-theme>=1.2.0      # Read the Docs theme for Sphinx (optional)
+nbsphinx>=0.9.0              # Include notebooks in Sphinx docs (optional)
