@@ -1,42 +1,35 @@
-# Core Quantum Computing
-qiskit>=1.0.0                # Core quantum computing framework
-qiskit-ibm-provider>=0.7.0   # IBM Quantum provider for accessing real quantum hardware
-qiskit-aer>=0.12.0           # Enhanced simulators for Qiskit
-qiskit-experiments>=0.5.0    # Tools for running experiments on quantum systems
+# Core quantum computing
+qiskit>=0.45.0,<1.0.0
+qiskit-aer>=0.13.0,<1.0.0
+qiskit-algorithms>=0.2.0,<1.0.0
 
-# Scientific Computing
-numpy>=1.24.0                # Numerical computing
-scipy>=1.10.0                # Scientific computing
-sympy>=1.12.0                # Symbolic mathematics (for quantum circuit analysis)
+# Scientific computing
+numpy>=1.24.0,<2.0.0
+scipy>=1.10.0,<2.0.0
+matplotlib>=3.7.0,<4.0.0
+pandas>=2.0.0,<3.0.0
 
-# Data Analysis
-pandas>=2.0.0                # Data manipulation and analysis
-scikit-learn>=1.2.0          # Machine learning tools
-scikit-image>=0.20.0         # Image processing algorithms
+# Data visualization
+seaborn>=0.12.0,<1.0.0
+plotly>=5.15.0,<6.0.0
 
-# Visualization
-matplotlib>=3.7.0            # Plotting and visualization
-seaborn>=0.12.0              # Statistical data visualization
-plotly>=5.14.0               # Interactive plots (optional)
-ipywidgets>=8.0.0            # Interactive widgets for notebooks
+# Jupyter notebooks
+jupyter>=1.0.0,<2.0.0
+ipywidgets>=8.0.0,<9.0.0
 
-# Image Processing
-pillow>=10.0.0               # Image loading and manipulation
-opencv-python>=4.7.0         # Advanced image processing (optional)
+# Logging and monitoring
+loguru>=0.7.0,<1.0.0
 
-# Quantum Image Processing
-piqture>=0.1.0               # Quantum image representation and processing
+# Configuration
+pydantic>=2.0.0,<3.0.0
 
-# Deep Learning (for hybrid quantum-classical models)
-torch>=2.0.0                 # PyTorch for deep learning
-torchvision>=0.15.0          # Computer vision utilities for PyTorch
+# Runtime utilities
+click>=8.0.0,<9.0.0
+rich>=13.0.0,<14.0.0
 
-# Jupyter Environment
-jupyter>=1.0.0               # Jupyter notebook
-jupyterlab>=4.0.0            # Enhanced Jupyter environment
-nbconvert>=7.3.0             # Convert notebooks to other formats (for paper figures)
-
-# Documentation
-sphinx>=6.1.0                # Documentation generator (optional)
-sphinx-rtd-theme>=1.2.0      # Read the Docs theme for Sphinx (optional)
-nbsphinx>=0.9.0              # Include notebooks in Sphinx docs (optional)
+# Development and testing
+pytest>=7.4.0,<8.0.0
+pytest-cov>=4.1.0,<5.0.0
+black>=23.7.0,<24.0.0
+flake8>=6.0.0,<7.0.0
+mypy>=1.5.0,<2.0.0
