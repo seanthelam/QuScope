@@ -12,13 +12,20 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
     requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
 
 # Get version from __init__.py
-version = {}
-with open("src/__init__.py") as fp:
-    exec(fp.read(), version)
+def get_version():
+    import re
+    with open("src/__init__.py", "r") as fp:
+        content = fp.read()
+        version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", content, re.M)
+        if version_match:
+            return version_match.group(1)
+        return "0.1.0"
+
+version_str = get_version()
 
 setup(
     name="quantum-algo-microscopy",
-    version=version.get("__version__", "0.1.0"),
+    version=version_str,
     author="Roberto Reis",
     author_email="roberto@example.com",
     description="Quantum Algorithm Microscopy - Advanced quantum computing analysis tools",

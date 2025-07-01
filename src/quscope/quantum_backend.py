@@ -138,11 +138,16 @@ class QuantumBackendManager:
             # Save account for future use
             IBMProvider.save_account(token=self.config.token, overwrite=True)
             
-            # Load the account
-            self.provider = IBMProvider(**self.config.get_provider_config())
+            # Load the account - newer versions don't accept hub/group/project in constructor
+            self.provider = IBMProvider()
             logger.info("Successfully authenticated with IBM Quantum.")
         except IBMAccountError as e:
             raise AuthenticationError(f"Failed to authenticate: {str(e)}")
+        except Exception as e:
+            # Handle other potential errors
+            logger.warning(f"Error initializing IBM Quantum backend: {str(e)}")
+            logger.info("Continuing with local simulator only.")
+            self.provider = None
     
     def get_available_backends(self, 
                               simulator_only: bool = False,
