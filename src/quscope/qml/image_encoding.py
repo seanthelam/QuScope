@@ -18,16 +18,17 @@ def encode_image_ineqr(img_array: np.ndarray) -> QuantumCircuit:
     if img_array.ndim != 2:
         raise ValueError("Input image array must be 2D.")
 
-    image_size = img_array.shape
+    # Convert image size to Python ints (not numpy ints)
+    image_size = (int(img_array.shape[0]), int(img_array.shape[1]))
     
     # Convert normalized float array (0-1) to integer array (0-255)
     pixel_vals_np = (img_array * 255).round().astype(np.uint8)
     
-    # Convert numpy array to list of lists (required by INEQR)
-    pixel_vals_list = pixel_vals_np.tolist()
+    # Convert to Python list and wrap in another list for INEQR grayscale format
+    pixel_vals_flat = pixel_vals_np.flatten().tolist()
+    pixel_vals_list = [pixel_vals_flat]  # INEQR expects list[list] with single list for grayscale
     
     # Use PiQture's INEQR embedding
-    # Note: PiQture expects image_size as (height, width)
     embedding = INEQR(image_size, pixel_vals_list).ineqr()
     
     return embedding
