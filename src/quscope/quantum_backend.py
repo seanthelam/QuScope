@@ -20,13 +20,40 @@ from qiskit.providers.exceptions import QiskitBackendNotFoundError
 from qiskit.result import Result
 from qiskit_aer import AerSimulator
 from qiskit_aer.noise import NoiseModel
-from qiskit_ibm_provider import IBMProvider
-from qiskit_ibm_provider.job import IBMJob
-from qiskit_ibm_provider.exceptions import (
-    IBMAccountError, 
-    IBMProviderError,
-    IBMBackendValueError
-)
+
+# Try to import IBM provider - make it optional for compatibility
+try:
+    from qiskit_ibm_provider import IBMProvider
+    from qiskit_ibm_provider.job import IBMJob
+    from qiskit_ibm_provider.exceptions import (
+        IBMAccountError, 
+        IBMProviderError,
+        IBMBackendValueError
+    )
+    IBM_PROVIDER_AVAILABLE = True
+except ImportError:
+    # Create mock classes for when IBM provider is not available
+    class IBMProvider:
+        """Mock IBMProvider for when qiskit-ibm-provider is not available."""
+        pass
+    
+    class IBMJob:
+        """Mock IBMJob for when qiskit-ibm-provider is not available."""
+        pass
+    
+    class IBMAccountError(Exception):
+        """Mock IBMAccountError for when qiskit-ibm-provider is not available."""
+        pass
+    
+    class IBMProviderError(Exception):
+        """Mock IBMProviderError for when qiskit-ibm-provider is not available."""
+        pass
+    
+    class IBMBackendValueError(Exception):
+        """Mock IBMBackendValueError for when qiskit-ibm-provider is not available."""
+        pass
+    
+    IBM_PROVIDER_AVAILABLE = False
 
 # Configure logging
 logger = logging.getLogger(__name__)

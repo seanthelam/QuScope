@@ -1,10 +1,32 @@
-# QuScope: Quantum Algorithms for Advanced Electron Microscopy
+# 🔬 QuScope v0.1.0: Quantum Algorithms for Microscopy
 
-**QuScope** is a professional Python package designed for applying quantum computing algorithms to electron microscopy image processing and Electron Energy Loss Spectroscopy (EELS) analysis. This refactored version leverages Qiskit for robust quantum circuit design and execution, offering integration with IBM Quantum backends (simulators and real hardware) and advanced quantum image processing techniques, including those from the PiQture library.
+[![PyPI version](https://badge.fury.io/py/quscope.svg)](https://badge.fury.io/py/quscope)
+[![Documentation Status](https://readthedocs.org/projects/quscope/badge/?version=latest)](https://quscope.readthedocs.io/en/latest/?badge=latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 
-QuScope aims to provide a comprehensive toolkit for researchers exploring the intersection of quantum computing and microscopy, facilitating the development and benchmarking of novel quantum algorithms for scientific image and spectral data analysis.
+**QuScope** is a comprehensive Python package for applying quantum computing algorithms to electron microscopy image processing and Electron Energy Loss Spectroscopy (EELS) analysis. Built on Qiskit, QuScope provides robust quantum circuit design and execution capabilities with seamless integration to quantum simulators and real quantum hardware.
 
-## Key Features
+## 🚀 **Quick Start**
+
+```bash
+pip install quscope
+```
+
+```python
+import quscope
+from quscope import EncodingMethod, encode_image_to_circuit
+import numpy as np
+
+# Create a sample image
+image = np.random.rand(4, 4)
+
+# Encode into quantum circuit
+circuit = encode_image_to_circuit(image, method=EncodingMethod.AMPLITUDE)
+print(f"Encoded into {circuit.num_qubits} qubits")
+```
+
+## ✨ **Key Features**
 
 *   **IBM Quantum Integration**:
     *   Seamless connection to IBM Quantum backends using `QuantumBackendManager`.

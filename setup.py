@@ -14,12 +14,15 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 # Get version from __init__.py
 def get_version():
     import re
-    with open("src/__init__.py", "r") as fp:
-        content = fp.read()
-        version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", content, re.M)
-        if version_match:
-            return version_match.group(1)
-        return "0.1.0"
+    try:
+        with open("src/__init__.py", "r") as fp:
+            content = fp.read()
+            version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", content, re.M)
+            if version_match:
+                return version_match.group(1)
+    except FileNotFoundError:
+        pass
+    return "0.1.0"
 
 version_str = get_version()
 
@@ -37,7 +40,6 @@ setup(
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Science/Research",
-        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.9",
@@ -61,11 +63,6 @@ setup(
             "sphinx>=7.1.0",
             "sphinx-rtd-theme>=1.3.0",
             "myst-parser>=2.0.0",
-        ],
-    },
-    entry_points={
-        "console_scripts": [
-            "quantum-microscopy=src.cli:main",
         ],
     },
     include_package_data=True,
