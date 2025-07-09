@@ -1,29 +1,85 @@
-.. QuScope documentation master file, created by
-   sphinx-quickstart on Fri Mar 28 23:26:12 2025.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. QuScope documentation master file
 
-Welcome to QuScope's documentation!
-=====================================
+============================
+QuScope v0.1.0 Documentation
+============================
 
-**QuScope** provides tools for applying quantum algorithms to electron microscopy data processing.
+**QuScope** (Quantum Algorithm Microscopy) is a comprehensive Python package for applying quantum computing algorithms to electron microscopy data processing and analysis.
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+🔬 **Key Features**
+===================
 
+- **Quantum Image Processing**: Encode and process microscopy images using quantum circuits
+- **EELS Analysis**: Quantum algorithms for Electron Energy Loss Spectroscopy data
+- **Quantum Machine Learning**: ML algorithms optimized for microscopy applications  
+- **Backend Management**: Seamless integration with quantum simulators and hardware
+- **Ready-to-Use Examples**: Comprehensive Jupyter notebooks and tutorials
+
+🚀 **Quick Start**
+==================
+
+Install QuScope via pip:
+
+.. code-block:: bash
+
+   pip install quscope
+
+Basic usage:
+
+.. code-block:: python
+
+   import quscope
+   from quscope import QuantumImageEncoder, EncodingMethod
+   
+   # Create a quantum image encoder
+   encoder = QuantumImageEncoder()
+   
+   # Encode an image using amplitude encoding
+   circuit = encoder.encode_image(image_array, method=EncodingMethod.AMPLITUDE)
+   
+   print(f"QuScope version: {quscope.__version__}")
+
+📚 **Documentation Structure**
+==============================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
-   :glob:
+   :caption: User Guide:
+   
+   installation
+   quickstart
+   tutorials/index
+   examples/index
 
+.. toctree::
+   :maxdepth: 2
+   :caption: API Reference:
+   
    api
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Notebooks & Examples:
+   
    notebooks
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Development:
+   
+   contributing
+   changelog
+   license
 
-Indices and tables
-==================
+🔗 **Links**
+============
+
+- **Repository**: https://github.com/robertoreis/quantum_algo_microscopy
+- **Issues**: https://github.com/robertoreis/quantum_algo_microscopy/issues
+- **PyPI**: https://pypi.org/project/quscope/
+
+📖 **Indices and Tables**
+=========================
 
 * :ref:`genindex`
 * :ref:`modindex`

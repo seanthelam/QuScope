@@ -1,4 +1,4 @@
-quscope.qml.image\_encoding
+﻿quscope.qml.image\_encoding
 ===========================
 
 .. automodule:: quscope.qml.image_encoding
@@ -8,5 +8,11 @@ quscope.qml.image\_encoding
 
    .. autosummary::
    
-      encode_image_ineqr
+      encode_image_quantum
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      QuantumImageEncoder
    

@@ -8,3 +8,4 @@ This section includes examples from the Jupyter notebooks.
    :glob:
 
    notebooks/*.ipynb
+   ../notebooks/*.ipynb

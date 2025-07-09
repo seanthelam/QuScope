@@ -3,32 +3,41 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "quantum-algo-microscopy"
-version = "1.0.0"
-description = "Quantum Algorithm Microscopy - Advanced quantum computing analysis tools"
+name = "quscope"
+version = "0.1.0"
+description = "QuScope - Quantum algorithms for microscopy image processing and EELS analysis"
 readme = "README.md"
 requires-python = ">=3.9"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
     {name = "Roberto Reis", email = "roberto@example.com"},
 ]
-keywords = ["quantum", "computing", "algorithms", "microscopy", "qiskit"]
+keywords = ["quantum", "computing", "microscopy", "EELS", "image-processing", "qiskit", "quantum-ml"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "qiskit>=0.45.0",
+    "qiskit-aer>=0.13.0",
+    "numpy>=1.21.0",
+    "pillow>=8.0.0",
+    "scipy>=1.7.0",
 ]
 
 [project.urls]
-Homepage = "https://github.com/robertoreis/quantum_algo_microscopy"
+Homepage = "https://quscope.readthedocs.io"
+Documentation = "https://quscope.readthedocs.io"
 Repository = "https://github.com/robertoreis/quantum_algo_microscopy.git"
-Documentation = "https://quantum-algo-microscopy.readthedocs.io/"
 "Bug Tracker" = "https://github.com/robertoreis/quantum_algo_microscopy/issues"
 
 [project.optional-dependencies]
@@ -40,9 +49,21 @@ dev = [
     "mypy>=1.5.0",
     "pre-commit>=3.3.0",
 ]
-
-[project.scripts]
-quantum-microscopy = "src.cli:main"
+docs = [
+    "sphinx>=7.1.0",
+    "sphinx-rtd-theme>=1.3.0",
+    "myst-parser>=2.0.0",
+    "nbsphinx>=0.9.0",
+]
+viz = [
+    "matplotlib>=3.5.0",
+    "jupyter>=1.0.0",
+]
+all = [
+    "matplotlib>=3.5.0",
+    "jupyter>=1.0.0",
+    "pandas>=1.3.0",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]
