@@ -60,9 +60,8 @@ intersphinx_mapping = {
 }
 
 source_suffix = {
-    '.rst': 'restructuredtext',
-    '.md': 'markdown',
-    '.ipynb': 'nbsphinx', # Add .ipynb for nbsphinx
+    '.rst': None,
+    '.md': None,
 }
 
 templates_path = ['_templates']
@@ -75,7 +74,7 @@ exclude_patterns = [
 ]
 
 # Mock imports for problematic dependencies
-autodoc_mock_imports = ["torch"]
+autodoc_mock_imports = ["torch", "sklearn"]
 
 # -- Options for HTML output -------------------------------------------------
 
