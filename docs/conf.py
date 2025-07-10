@@ -7,7 +7,19 @@ import os
 import sys
 
 # Ensure proper path configuration for quscope package
-# Working from docs/ directory, need to go up to project root then to src/
+# Handle both CI environment (PYTHONPATH set) and local development
+
+# Check if we're in a CI environment with PYTHONPATH
+pythonpath_env = os.environ.get('PYTHONPATH', '')
+if pythonpath_env:
+    print(f"Using PYTHONPATH from environment: {pythonpath_env}")
+    # Add paths from PYTHONPATH if not already in sys.path
+    for path in pythonpath_env.split(os.pathsep):
+        if path and path not in sys.path:
+            sys.path.insert(0, path)
+            print(f"Added from PYTHONPATH: {path}")
+
+# Also set up local paths for development
 project_root = os.path.abspath('..')
 src_directory = os.path.join(project_root, 'src')
 
@@ -15,10 +27,12 @@ print(f"Project root: {project_root}")
 print(f"Source directory: {src_directory}")
 print(f"Current working directory: {os.getcwd()}")
 
-# Add source directory to Python path
+# Add source directory to Python path if not already there
 if src_directory not in sys.path:
     sys.path.insert(0, src_directory)
     print(f"Added {src_directory} to Python path")
+
+print(f"Current Python path: {sys.path[:3]}...")  # Show first 3 entries
 
 # Verify the quscope module structure
 quscope_path = os.path.join(src_directory, 'quscope')
@@ -31,13 +45,13 @@ else:
 # Try to import quscope
 try:
     import quscope
-    print(f"Successfully imported quscope")
+    print(f"✅ Successfully imported quscope")
     if hasattr(quscope, '__version__'):
         print(f"Version: {quscope.__version__}")
     else:
         print("No version attribute found")
 except ImportError as e:
-    print(f"Failed to import quscope: {e}")
+    print(f"❌ Failed to import quscope: {e}")
     print(f"Python path: {sys.path}")
     
     # Debug information

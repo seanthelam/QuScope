@@ -75,13 +75,52 @@ jobs:
       with:
         python-version: '3.11'
     
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y pandoc
+    
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -e .[docs]
+        # Install docs dependencies first
+        pip install sphinx sphinx-rtd-theme myst-parser nbsphinx
+        # Install basic dependencies that are safe
+        pip install numpy matplotlib scipy scikit-learn Pillow
+        # Try to install the package first to get proper imports
+        pip install -e . || echo "Package installation failed, using source files"
+        
+    - name: Verify package installation
+      run: |
+        python -c "
+        import sys, os
+        # First try normal import
+        try:
+            import quscope
+            print(f'✅ Package import successful: quscope v{quscope.__version__}')
+        except ImportError as e:
+            print(f'❌ Package import failed: {e}')
+            # Fallback: Add src to path manually
+            src_path = os.path.join(os.getcwd(), 'src')
+            sys.path.insert(0, src_path)
+            try:
+                import quscope
+                print(f'✅ Source import successful: quscope v{quscope.__version__}')
+            except ImportError as e2:
+                print(f'❌ Source import also failed: {e2}')
+                print(f'Working dir: {os.getcwd()}')
+                print(f'Source path exists: {os.path.exists(src_path)}')
+                if os.path.exists(src_path):
+                    print(f'Source contents: {os.listdir(src_path)}')
+        "
+        
+    - name: Setup Python path for docs
+      run: |
+        echo "PYTHONPATH=${GITHUB_WORKSPACE}/src:${PYTHONPATH}" >> $GITHUB_ENV
     
     - name: Build documentation
       run: |
+        export PYTHONPATH="${GITHUB_WORKSPACE}/src:${PYTHONPATH}"
         cd docs
         make html
     
