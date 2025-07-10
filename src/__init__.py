@@ -6,7 +6,7 @@ and quantum machine learning with microscopy applications.
 """
 
 __version__ = "0.1.0"
-__author__ = "Roberto Reis"
+__author__ = "Reis, Roberto and Lam, Sean"
 __email__ = "roberto@example.com"
 __description__ = "Quantum Algorithm Microscopy - Advanced quantum computing analysis tools"
 
