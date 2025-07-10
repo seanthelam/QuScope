@@ -1,13 +1,30 @@
 # 🔬 QuScope v0.1.0: Quantum Algorithms for Microscopy
 
-[![PyPI version](https://badge.fury.io/py/quscope.svg)](https://badge.fury.io/py/quscope)
+[![GitHub release](https://img.shields.io/github/v/release/QuScope/QuScope?include_prereleases&label=version)](https://github.com/QuScope/QuScope/releases)
 [![Documentation Status](https://readthedocs.org/projects/quscope/badge/?version=latest)](https://quscope.readthedocs.io/en/latest/?badge=latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Tests](https://github.com/QuScope/QuScope/workflows/Tests/badge.svg)](https://github.com/QuScope/QuScope/actions)
+
+> **Note**: QuScope v0.1.0 is preparing for initial PyPI release. Install from source until PyPI package is available.
 
 **QuScope** is a comprehensive Python package for applying quantum computing algorithms to electron microscopy image processing and Electron Energy Loss Spectroscopy (EELS) analysis. Built on Qiskit, QuScope provides robust quantum circuit design and execution capabilities with seamless integration to quantum simulators and real quantum hardware.
 
 ## 🚀 **Quick Start**
+
+### Current Installation (Development)
+
+```bash
+# Clone the repository
+git clone https://github.com/QuScope/QuScope.git
+cd QuScope
+
+# Install in development mode
+pip install -e .
+```
+
+### After PyPI Release (Coming Soon)
 
 ```bash
 pip install quscope
@@ -103,10 +120,20 @@ QuScope/
 
 ## Installation
 
-### From PyPI (Recommended)
+### From PyPI (Coming Soon)
+
+> **Status**: QuScope v0.1.0 will be available on PyPI after the first official release is created on GitHub.
 
 ```bash
-pip install quscope
+pip install quscope  # Available after v0.1.0 release
+```
+
+### Development Installation (Current)
+
+```bash
+git clone https://github.com/QuScope/QuScope.git
+cd QuScope
+pip install -e .
 ```
 
 ### Prerequisites
