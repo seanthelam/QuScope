@@ -43,6 +43,7 @@ else:
     print(f"quscope directory not found at: {quscope_path}")
 
 # Try to import quscope
+print("=== QuScope Import Attempt ===")
 try:
     import quscope
     print(f"✅ Successfully imported quscope")
@@ -50,6 +51,20 @@ try:
         print(f"Version: {quscope.__version__}")
     else:
         print("No version attribute found")
+    
+    # Test submodule imports to ensure they work
+    try:
+        from quscope import image_processing
+        print("✅ image_processing import successful")
+    except ImportError as sub_e:
+        print(f"⚠️  image_processing import failed: {sub_e}")
+        
+    try:
+        from quscope import qml
+        print("✅ qml import successful")
+    except ImportError as sub_e:
+        print(f"⚠️  qml import failed: {sub_e}")
+        
 except ImportError as e:
     print(f"❌ Failed to import quscope: {e}")
     print(f"Python path: {sys.path}")
@@ -62,8 +77,34 @@ except ImportError as e:
         init_file = os.path.join(quscope_path, '__init__.py')
         if os.path.exists(init_file):
             print(f"__init__.py exists: {init_file}")
+            # Try to read the first few lines to debug
+            try:
+                with open(init_file, 'r') as f:
+                    first_lines = [f.readline().strip() for _ in range(5)]
+                print(f"First lines of __init__.py: {first_lines}")
+            except Exception as read_e:
+                print(f"Could not read __init__.py: {read_e}")
         else:
             print(f"__init__.py missing: {init_file}")
+            
+    # Final attempt with explicit import
+    print("=== Attempting manual import with error details ===")
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("quscope", os.path.join(quscope_path, "__init__.py"))
+        if spec and spec.loader:
+            quscope_module = importlib.util.module_from_spec(spec)
+            sys.modules["quscope"] = quscope_module
+            spec.loader.exec_module(quscope_module)
+            print("✅ Manual import successful")
+        else:
+            print("❌ Could not create module spec")
+    except Exception as manual_e:
+        print(f"❌ Manual import failed: {manual_e}")
+        import traceback
+        traceback.print_exc()
+
+print("=== End Import Attempt ===\n")
 
 # -- Project information -----------------------------------------------------
 

@@ -85,33 +85,43 @@ jobs:
         python -m pip install --upgrade pip
         # Install docs dependencies first
         pip install sphinx sphinx-rtd-theme myst-parser nbsphinx
-        # Install basic dependencies that are safe
+        # Install only minimal dependencies needed for docs (no heavy quantum/ML libs)
         pip install numpy matplotlib scipy scikit-learn Pillow
-        # Try to install the package first to get proper imports
-        pip install -e . || echo "Package installation failed, using source files"
         
-    - name: Verify package installation
+    - name: Install package without heavy dependencies
+      run: |
+        # Install package in development mode with only core dependencies
+        # This avoids pulling in qiskit and other heavy dependencies that cause import issues
+        pip install -e . --no-deps || echo "Package installation failed, using source files"
+        
+    - name: Verify package structure
       run: |
         python -c "
         import sys, os
-        # First try normal import
+        print('=== Package Structure Verification ===')
+        print(f'Working directory: {os.getcwd()}')
+        print(f'Python executable: {sys.executable}')
+        
+        # Check source structure
+        src_path = os.path.join(os.getcwd(), 'src')
+        quscope_path = os.path.join(src_path, 'quscope')
+        print(f'Source path exists: {os.path.exists(src_path)}')
+        print(f'QuScope path exists: {os.path.exists(quscope_path)}')
+        
+        if os.path.exists(src_path):
+            print(f'Source contents: {os.listdir(src_path)}')
+        if os.path.exists(quscope_path):
+            print(f'QuScope contents: {os.listdir(quscope_path)}')
+            
+        # Test imports with source path
+        sys.path.insert(0, src_path)
         try:
             import quscope
-            print(f'✅ Package import successful: quscope v{quscope.__version__}')
+            print(f'✅ Source import successful: quscope v{quscope.__version__}')
         except ImportError as e:
-            print(f'❌ Package import failed: {e}')
-            # Fallback: Add src to path manually
-            src_path = os.path.join(os.getcwd(), 'src')
-            sys.path.insert(0, src_path)
-            try:
-                import quscope
-                print(f'✅ Source import successful: quscope v{quscope.__version__}')
-            except ImportError as e2:
-                print(f'❌ Source import also failed: {e2}')
-                print(f'Working dir: {os.getcwd()}')
-                print(f'Source path exists: {os.path.exists(src_path)}')
-                if os.path.exists(src_path):
-                    print(f'Source contents: {os.listdir(src_path)}')
+            print(f'❌ Source import failed: {e}')
+            import traceback
+            traceback.print_exc()
         "
         
     - name: Setup Python path for docs
