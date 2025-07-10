@@ -36,10 +36,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://quscope.readthedocs.io"
+Homepage = "https://github.com/QuScope/QuScope"
 Documentation = "https://quscope.readthedocs.io"
-Repository = "https://github.com/robertoreis/quantum_algo_microscopy.git"
-"Bug Tracker" = "https://github.com/robertoreis/quantum_algo_microscopy/issues"
+Repository = "https://github.com/QuScope/QuScope.git"
+"Bug Tracker" = "https://github.com/QuScope/QuScope/issues"
 
 [project.optional-dependencies]
 dev = [
@@ -49,6 +49,8 @@ dev = [
     "flake8>=6.0.0",
     "mypy>=1.5.0",
     "pre-commit>=3.3.0",
+    "build>=0.10.0",
+    "twine>=4.0.0",
 ]
 docs = [
     "sphinx>=7.1.0",
