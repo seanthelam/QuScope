@@ -34,8 +34,8 @@ build:
 # Set the Python environment
 python:
   install:
-    - requirements: docs/requirements.txt
     - method: pip
       path: .
       extra_requirements:
         - docs
+    - requirements: docs/requirements.txt

@@ -5,7 +5,11 @@
 
 import os
 import sys
-# sys.path.insert(0, os.path.abspath('../../src')) # No longer needed, package is installed
+
+# Add src path as fallback in case package installation fails
+src_path = os.path.abspath('../../src')
+if src_path not in sys.path and os.path.exists(src_path):
+    sys.path.insert(0, src_path)
 
 # -- Project information -----------------------------------------------------
 
@@ -59,10 +63,7 @@ intersphinx_mapping = {
     'pandas': ('https://pandas.pydata.org/pandas-docs/stable/', None),
 }
 
-source_suffix = {
-    '.rst': None,
-    '.md': None,
-}
+source_suffix = ['.rst', '.md']
 
 templates_path = ['_templates']
 exclude_patterns = [
@@ -74,7 +75,15 @@ exclude_patterns = [
 ]
 
 # Mock imports for problematic dependencies
-autodoc_mock_imports = ["torch", "sklearn"]
+autodoc_mock_imports = [
+    "torch", 
+    "sklearn", 
+    "sklearn.cluster",
+    "qiskit_aer",
+    "qiskit.providers.aer",
+    "scipy.ndimage",
+    "scipy.signal"
+]
 
 # -- Options for HTML output -------------------------------------------------
 

@@ -31,7 +31,7 @@ from scipy.ndimage import gaussian_filter, median_filter, sobel
 from scipy.signal import wiener
 from sklearn.cluster import KMeans
 
-from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, transpile, assemble
+from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, transpile
 from qiskit_aer import Aer
 from qiskit.circuit.library import MCXGate
 
