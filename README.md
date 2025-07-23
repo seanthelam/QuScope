@@ -9,7 +9,7 @@
 
 > **Note**: QuScope v0.1.0 is preparing for initial PyPI release. Install from source until PyPI package is available.
 
-**QuScope** is a comprehensive Python package for applying quantum computing algorithms to electron microscopy image processing and Electron Energy Loss Spectroscopy (EELS) analysis. Built on Qiskit, QuScope provides robust quantum circuit design and execution capabilities with seamless integration to quantum simulators and real quantum hardware.
+**QuScope** is a comprehensive Python package for applying quantum computing algorithms to electron microscopy image processing, Electron Energy Loss Spectroscopy (EELS) analysis, and electron diffraction analysis. Built on Qiskit, QuScope provides robust quantum circuit design and execution capabilities with seamless integration to quantum simulators and real quantum hardware.
 
 ## 🚀 **Quick Start**
 
@@ -91,8 +91,11 @@ QuScope/
 │   └── qml_image_encoding_example.ipynb  # QML examples
 ├── src/
 │   └── quscope/                    # Main package source
-│       ├── __init__.py
-│       ├── quantum_backend.py      # IBM Quantum backend management
+│       ├── eels_analysis/          # EELS analysis modules
+│       │   ├── __init__.py
+│       │   ├── preprocessing.py
+│       │   └── quantum_processing.py
+│       ├── electron_diffraction/   # Electron Diffraction analysis modules
 │       ├── image_processing/       # Quantum image processing modules
 │       │   ├── __init__.py
 │       │   ├── preprocessing.py
@@ -100,13 +103,11 @@ QuScope/
 │       │   ├── quantum_segmentation.py
 │       │   ├── filtering.py
 │       │   └── image_denoising.py  # Quantum-classical hybrid denoising
-│       ├── eels_analysis/          # EELS analysis modules
+│       ├── qml/                    # Quantum Machine Learning modules
 │       │   ├── __init__.py
-│       │   ├── preprocessing.py
-│       │   └── quantum_processing.py
-│       └── qml/                    # Quantum Machine Learning modules
-│           ├── __init__.py
-│           └── image_encoding.py
+│       │   └── image_encoding.py
+│       ├── __init__.py
+│       └── quantum_backend.py      # IBM Quantum backend management
 ├── docs/                           # Sphinx documentation
 │   ├── conf.py
 │   ├── index.rst
@@ -369,7 +370,7 @@ This package is developed to support research in quantum algorithms for electron
 
 ```bibtex
 @software{quscope_2025,
-  author = {Reis, Roberto},
+  author = {Reis, Roberto and Lam, Sean},
   title = {{QuScope: Quantum Algorithms for Microscopy}},
   version = {0.1.0},
   year = {2025},
@@ -404,12 +405,14 @@ If you encounter any issues or have questions:
 
 ---
 
-**QuScope v0.1.0** - Bringing quantum computing to electron microscopy 🔬⚛️
-3.  Make your changes and commit them with clear, descriptive messages.
-4.  Ensure your code adheres to PEP 8 style guidelines and includes docstrings.
-5.  Add or update unit tests for your changes.
-6.  Push your branch to your fork (`git push origin feature/your-feature-name`).
-7.  Open a Pull Request to the `main` branch of the original repository.
+## 🛠️ Contributions
+
+To contribute to QuScope:
+1.  Make your changes and commit them with clear, descriptive messages.
+2.  Ensure your code adheres to PEP 8 style guidelines and includes docstrings.
+3.  Add or update unit tests for your changes.
+4.  Push your branch to your fork (`git push origin feature/your-feature-name`).
+5.  Open a Pull Request to the `main` branch of the original repository.
 
 Please make sure to update tests as appropriate.
 
